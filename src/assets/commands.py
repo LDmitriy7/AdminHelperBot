@@ -1,13 +1,17 @@
-from aiogram import Bot
 from aiogram.types import BotCommand
 
-START = 'start'
+import config
+from lib import set_chats_commands
 
-USER_COMMANDS = [
-    BotCommand(START, 'Главное меню'),
+START = 'start'
+ADD_SALE = 'add_sale'
+TEST = 'test'
+
+ADMIN_COMMANDS = [
+    BotCommand(ADD_SALE, 'Добавить продажу'),
+    BotCommand(START, 'Перезапустить бота'),
 ]
 
 
 async def setup():
-    bot = Bot.get_current()
-    await bot.set_my_commands(USER_COMMANDS)
+    await set_chats_commands(ADMIN_COMMANDS, config.ADMINS_IDS, no_error=True)
