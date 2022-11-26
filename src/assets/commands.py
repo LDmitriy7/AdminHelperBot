@@ -5,10 +5,12 @@ from lib import set_chats_commands
 
 START = 'start'
 ADD_SALE = 'add_sale'
+CHANNELS = 'channels'
 TEST = 'test'
 
 ADMIN_COMMANDS = [
     BotCommand(ADD_SALE, 'Добавить продажу'),
+    BotCommand(CHANNELS, 'Список каналов'),
     BotCommand(START, 'Перезапустить бота'),
 ]
 
