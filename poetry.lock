@@ -151,6 +151,17 @@ optional = false
 python-versions = ">=3.7,<4.0"
 
 [[package]]
+name = "mongoengine"
+version = "0.24.2"
+description = "MongoEngine is a Python Object-Document Mapper for working with MongoDB."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+pymongo = ">=3.4,<5.0"
+
+[[package]]
 name = "motor"
 version = "3.1.1"
 description = "Non-blocking MongoDB driver for Tornado or asyncio"
@@ -220,7 +231,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "499253949e6ebfb6ff8690abcbd2626b1542ee566b5c6f9c09383fc195275452"
+content-hash = "45761e71916b48b4df53b005ce0c4d3c8972db44019a2614eb011dca40f83999"
 
 [metadata.files]
 aiogram = [
@@ -415,6 +426,10 @@ idna = [
 magic-filter = [
     {file = "magic-filter-1.0.9.tar.gz", hash = "sha256:d0f1ffa5ff1fbe5105fd5f293c79b5d3795f336ea0f6129c636959a687bf422a"},
     {file = "magic_filter-1.0.9-py3-none-any.whl", hash = "sha256:51002312a8972fa514b998b7ff89340c98be3fc499967c1f5f2af98d13baf8d5"},
+]
+mongoengine = [
+    {file = "mongoengine-0.24.2-py3-none-any.whl", hash = "sha256:f5c4e1b206b2ccffe4adc7a6283ed26dd799bd115a5fb1d2e885a075132cdb88"},
+    {file = "mongoengine-0.24.2.tar.gz", hash = "sha256:c76d49658575bb995682e2e77c8ef7cda63faf939415b32ee923745d120f8b02"},
 ]
 motor = [
     {file = "motor-3.1.1-py3-none-any.whl", hash = "sha256:01d93d7c512810dcd85f4d634a7244ba42ff6be7340c869791fe793561e734da"},

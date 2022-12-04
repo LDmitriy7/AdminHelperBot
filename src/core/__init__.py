@@ -1,4 +1,4 @@
-from .app import App
+from .app import app
 from .database import Database
 from .env import env
 from .handler import Handler

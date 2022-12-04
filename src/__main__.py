@@ -1,5 +1,3 @@
-from handlers import HANDLERS
-from loader import app
-from middlewares import MIDDLEWARES
+from core import app
 
-app.run(HANDLERS, MIDDLEWARES)
+app.run()

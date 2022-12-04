@@ -1,12 +1,12 @@
 from core import HandlerGroup
-from .add_sale import ADD_SALE
 from .channels import CHANNELS
+from .date import DATE
 from .start import START
-from .test import TEST
+from .time import TIME
 
-HANDLERS = HandlerGroup(
+ADD_SALE = HandlerGroup(
     START,
-    TEST,
     CHANNELS,
-    ADD_SALE,
+    DATE,
+    TIME,
 )

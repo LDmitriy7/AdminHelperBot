@@ -1,13 +1,18 @@
-from aiogram.dispatcher.middlewares import BaseMiddleware
-
+from . import config
 from .database import Database
 from .dispatcher import Dispatcher
-from .handler_group import HandlerGroup
 
 
 class App:
-    def __init__(self, bot_token: str, db: Database):
-        self._dp = Dispatcher(bot_token, db)
+    def __init__(self):
+        db = Database()
+        self._dp = Dispatcher(config.BOT_TOKEN, db)
 
-    def run(self, handlers: HandlerGroup, middlewares: list[BaseMiddleware]):
-        self._dp.start_polling(handlers, middlewares)
+    def run(self):
+        from handlers import HANDLERS
+        from middlewares import MIDDLEWARES
+
+        self._dp.start_polling(HANDLERS, MIDDLEWARES)
+
+
+app = App()

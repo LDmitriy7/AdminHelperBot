@@ -1,7 +1,16 @@
-import actions
-import events
-from core import HandlerGroup, Handler
+from aiogram import types
+from aiogram.dispatcher import FSMContext
 
-START = HandlerGroup(
-    Handler(events.start, actions.start),
-)
+from assets import texts, commands
+from core import Handler, events
+
+event = events.Command(commands.START, state='*')
+
+
+async def callback(msg: types.Message, state: FSMContext):
+    await state.finish()
+    await msg.answer(texts.welcome)
+    await commands.setup()
+
+
+START = Handler(event, callback)

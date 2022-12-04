@@ -1,7 +1,13 @@
-import actions
-import events
-from core import HandlerGroup, Handler
+from aiogram import types
 
-TEST = HandlerGroup(
-    Handler(events.test, actions.test),
-)
+from assets import commands
+from core import Handler, events
+
+event = events.Command(commands.TEST, state='*')
+
+
+async def callback(msg: types.Message):
+    await msg.answer('test')
+
+
+TEST = Handler(event, callback)
