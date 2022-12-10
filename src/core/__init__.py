@@ -1,4 +1,5 @@
 from .app import app
+from .bot import bot
 from .database import Database
 from .env import env
 from .handler import Handler

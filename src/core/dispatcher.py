@@ -3,20 +3,19 @@ from aiogram.contrib.fsm_storage.mongo import MongoStorage
 from aiogram.dispatcher.middlewares import BaseMiddleware
 from aiogram.utils import executor
 
+from .bot import bot
 from .database import Database
 from .handler import Handler
 from .handler_group import HandlerGroup
 
 
 class Dispatcher:
-    def __init__(self, bot_token: str, db: Database):
-        self._bot_token = bot_token
+    def __init__(self, db: Database):
         self._db = db
 
     def _create_raw(self) -> aiogram.Dispatcher:
         from . import middlewares
 
-        bot = aiogram.Bot(self._bot_token, parse_mode='html', disable_web_page_preview=True)
         storage = MongoStorage(
             host=self._db.host,
             db_name=self._db.name,

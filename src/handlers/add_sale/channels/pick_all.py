@@ -9,9 +9,15 @@ event = events.Click(kbs.Channels.pick_all, state=states.AddingSale.channels)
 
 
 async def callback(query: types.CallbackQuery, state: FSMContext):
-    channels = [c.name for c in config.CHANNELS]
-    await state.update_data(channels=channels)
+    storage = await state.get_data()
+    channels = storage.get('channels', [])
 
+    if len(channels) == len(config.CHANNELS):
+        channels = []
+    else:
+        channels = [c.name for c in config.CHANNELS]
+
+    await state.update_data(channels=channels)
     kb = kbs.Channels(config.CHANNELS, selected=channels).adapt()
     await query.message.edit_reply_markup(kb)
 
