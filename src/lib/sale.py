@@ -29,7 +29,7 @@ def repr_date(date_time: datetime) -> str:
         12: 'декабря',
     }[date_time.month]
 
-    return f'{date_time.day} {month}'
+    return f'#{date_time.day}_{month}'
 
 
 def repr_date_time(date_time: datetime) -> str:
