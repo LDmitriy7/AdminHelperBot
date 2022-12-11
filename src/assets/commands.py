@@ -16,4 +16,4 @@ ADMIN_COMMANDS = [
 
 
 async def setup():
-    await set_chats_commands(ADMIN_COMMANDS, config.REPORT_GROUP_ID, no_error=True)
+    await set_chats_commands(ADMIN_COMMANDS, [config.REPORT_GROUP_ID], no_error=True)
