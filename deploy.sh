@@ -5,4 +5,5 @@ if [ ! -f "$ENV_FILE" ]; then
   return
 fi
 
-docker compose up --build -d
+#docker compose up --build -d
+docker build -t adminhelperbot_app . && docker run -ti --restart=always -e TZ=Europe/Moscow adminhelperbot_app
