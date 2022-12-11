@@ -2,6 +2,13 @@ import models
 from core.keyboards import CallbackButton, InlineKeyboard
 
 
+class Skip(InlineKeyboard):
+    button = CallbackButton('Пропустить')
+
+    def __init__(self):
+        self.add_row(self.button)
+
+
 class Channels(InlineKeyboard):
     item = CallbackButton('{channel_and_prefix}', 'Channels.item:{channel}')
     pick_all = CallbackButton('➕ Выбрать все', 'Channels.pick_all')

@@ -3,7 +3,7 @@ from aiogram.dispatcher import FSMContext
 
 import config
 import models
-from assets import states
+from assets import states, texts, kbs
 from core import Handler, events, bot
 from lib import resolve_datetime, repr_sale
 
@@ -18,16 +18,20 @@ async def callback(msg: types.Message, state: FSMContext):
         await msg.answer('Ошибка, отправь время в верном формате')
         return
 
+    await state.update_data(datetime=datetime)
+
     sale = models.Sale(
         user=msg.from_user.full_name,
         datetime=datetime,
         channels=storage['channels'],
     ).save()
 
-    await state.finish()
+    await states.AddingSale.post.set()
+
     text = repr_sale(sale)
-    report_msg = await bot.send_message(config.REPORT_GROUP_ID, text)
-    await msg.answer(f'Готово: {report_msg.url}')
+    await bot.send_message(config.REPORT_GROUP_ID, text)
+    kb = kbs.Skip().adapt()
+    await msg.answer(texts.ask_post, reply_markup=kb)
 
 
 TIME = Handler(event, callback)

@@ -5,6 +5,7 @@ import mongoengine as me
 
 @dataclass
 class Channel:
+    id: int
     name: str
     url: str
 

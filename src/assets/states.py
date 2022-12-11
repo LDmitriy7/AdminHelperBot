@@ -5,3 +5,4 @@ class AddingSale(StatesGroup):
     channels = State()
     date = State()
     time = State()
+    post = State()
