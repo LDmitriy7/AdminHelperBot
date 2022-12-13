@@ -4,7 +4,7 @@ import config
 from assets import kbs, commands, states
 from core import Handler, events
 
-event = events.Command(commands.ADD_SALE, user_id=config.ADMINS_IDS)
+event = events.Command(commands.ADD_SALE, user_id=config.ADMINS_IDS, state='*')
 
 
 async def callback(msg: types.Message):

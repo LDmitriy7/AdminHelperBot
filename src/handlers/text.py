@@ -5,7 +5,7 @@ from assets import states
 from core import Handler, events
 from lib import parse_channels
 
-event = events.Text(chat_type='private')
+event = events.Text()
 
 
 async def callback(msg: types.Message, state: FSMContext):
