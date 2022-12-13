@@ -12,7 +12,6 @@ async def callback(msg: types.Message, state: FSMContext):
     channels = parse_channels(msg)
 
     if not channels:
-        await msg.answer('В сообщении не найдено ни одного канала')
         return
 
     await state.update_data(channels=channels)
