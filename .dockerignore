@@ -1,7 +1,1 @@
 .git
-.gitignore
-.env.sample
-deploy.sh
-docker-compose.yml
-Dockerfile
-README.md

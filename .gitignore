@@ -1,5 +1,6 @@
-.idea/
-.env
-*.log
 __pycache__/
+.idea/
+*.log
+
+.env
 *.session*
