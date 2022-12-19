@@ -4,11 +4,13 @@ from .channels import CHANNELS
 from .start import START
 from .test import TEST
 from .text import TEXT
+from .userbot import USERBOT
 
 HANDLERS = HandlerGroup(
     START,
     TEST,
     CHANNELS,
     ADD_SALE,
+    USERBOT,
     TEXT,
 )

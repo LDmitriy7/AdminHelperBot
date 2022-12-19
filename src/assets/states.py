@@ -6,3 +6,7 @@ class AddingSale(StatesGroup):
     date = State()
     time = State()
     post = State()
+
+
+class UserbotAuth(StatesGroup):
+    phone_code = State()

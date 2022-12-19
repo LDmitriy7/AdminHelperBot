@@ -6,7 +6,7 @@ from core import markup
 
 
 def repr_time_item(value: int) -> str:
-    return str(value).ljust(2, '0')
+    return str(value).rjust(2, '0')
 
 
 def repr_time(date_time: datetime) -> str:

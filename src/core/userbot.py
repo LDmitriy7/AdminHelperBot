@@ -8,8 +8,14 @@ from . import config
 
 
 class Userbot(pyrogram.Client):
-    def __init__(self, api_id: int, api_hash: str):
-        super().__init__('../userbot', api_id, api_hash)
+    def __init__(self, api_id: int, api_hash: str, phone_number: str, password: str):
+        super().__init__(
+            '../userbot',
+            api_id,
+            api_hash,
+            phone_number=phone_number,
+            password=password,
+        )
         self.start()
 
     async def forward_messages(
@@ -59,4 +65,9 @@ class Userbot(pyrogram.Client):
         return types.List(forwarded_messages) if is_iterable else forwarded_messages[0]
 
 
-userbot = Userbot(config.USERBOT_API_ID, config.USERBOT_API_HASH)
+userbot = Userbot(
+    config.USERBOT_API_ID,
+    config.USERBOT_API_HASH,
+    config.PHONE_NUMBER,
+    config.PASSWORD,
+)
