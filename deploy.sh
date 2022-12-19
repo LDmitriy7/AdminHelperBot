@@ -7,6 +7,6 @@ if [ ! -f $ENV_FILE_NAME ]; then
 fi
 
 docker build . -t $APP_NAME
-docker run $APP_NAME -ti --restart=always --name=$APP_NAME -e TZ=Europe/Moscow
+docker run -ti $APP_NAME --restart=always --name=$APP_NAME -e TZ=Europe/Moscow
 
 #docker compose up --build -d
