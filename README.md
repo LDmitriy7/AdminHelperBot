@@ -1,3 +1,3 @@
 # AdminHelperBot
 
-Use `. deploy.sh`
+Use `. deploy.sh` and `. shutdown.sh`
