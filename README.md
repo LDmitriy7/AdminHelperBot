@@ -1,1 +1,3 @@
 # AdminHelperBot
+
+Use `. deploy.sh`

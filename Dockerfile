@@ -1,11 +1,7 @@
 FROM python:3.10-slim
-
 WORKDIR /app
-
+RUN pip install poetry
 COPY pyproject.toml poetry.lock ./
-
-RUN pip install poetry && poetry install
-
+RUN poetry install
 COPY . .
-
 CMD poetry run python src/
