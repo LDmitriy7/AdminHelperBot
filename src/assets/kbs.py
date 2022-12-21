@@ -15,7 +15,7 @@ class Channels(InlineKeyboard):
     finish = CallbackButton('✅ Готово', 'Channels.finish')
 
     def _make_item(self, channel: models.Channel, selected: list[str]) -> CallbackButton:
-        channel = channel_and_prefix = channel.name
+        channel = channel_and_prefix = channel.title
 
         if channel in selected:
             channel_and_prefix = '🔸 ' + channel

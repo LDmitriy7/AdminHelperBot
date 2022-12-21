@@ -8,7 +8,7 @@ event = events.Command(commands.CHANNELS, state='*')
 
 
 async def callback(msg: types.Message):
-    strings = [f'🔸 {markup.link(c.url, c.name)}' for c in config.CHANNELS]
+    strings = [f'🔸 {markup.link(c.url, c.title)}' for c in config.CHANNELS]
     text = '\n\n'.join(strings)
     await msg.answer(text)
 

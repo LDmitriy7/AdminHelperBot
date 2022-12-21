@@ -2,13 +2,14 @@ from datetime import datetime
 from typing import Iterable
 
 import pyrogram
-from pyrogram import utils, raw, types
+from pyrogram import utils, raw, types, errors
 
 from . import config
 
 
 class Userbot(pyrogram.Client):
     def __init__(self, api_id: int, api_hash: str, phone_number: str, password: str):
+        self.sent_code: types.SentCode | None = None
         super().__init__(
             '../userbot',
             api_id,
@@ -16,7 +17,6 @@ class Userbot(pyrogram.Client):
             phone_number=phone_number,
             password=password,
         )
-        self.start()
 
     async def forward_messages(
             self,
@@ -63,6 +63,22 @@ class Userbot(pyrogram.Client):
                 )
 
         return types.List(forwarded_messages) if is_iterable else forwarded_messages[0]
+
+    async def authorize(self) -> types.User:
+        try:
+            signed_in = await self.sign_in(self.phone_number, self.sent_code.phone_code_hash, self.phone_code)
+        except errors.SessionPasswordNeeded:
+            signed_in = await self.check_password(self.password)
+
+        return signed_in
+
+    async def connect(self) -> bool:
+        try:
+            is_authorized = await super().connect()
+        except ConnectionError:
+            is_authorized = bool(await self.storage.user_id())
+
+        return is_authorized
 
 
 userbot = Userbot(

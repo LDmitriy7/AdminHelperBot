@@ -20,6 +20,6 @@ def parse_channels(msg: types.Message) -> list[str]:
 
         for c in config.CHANNELS:
             if c.url == url:
-                channels.add(c.name)
+                channels.add(c.title)
 
     return list(channels)

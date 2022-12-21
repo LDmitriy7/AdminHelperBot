@@ -1,5 +1,4 @@
 from aiogram import types
-from aiogram.dispatcher import FSMContext
 
 import config
 from assets import commands, states
@@ -8,17 +7,20 @@ from core import Handler, events, userbot
 event = events.Command(commands.USERBOT, user_id=config.OWNER_ID)
 
 
-async def callback(msg: types.Message, state: FSMContext):
+async def callback(msg: types.Message):
+    if userbot.is_initialized:
+        await msg.answer('Юзербот уже инициализирован')
+        return
+
     is_authorized = await userbot.connect()
 
     if is_authorized:
-        await msg.answer('Юзербот уже авторизован')
+        await userbot.start()
+        await msg.answer('Юзербот инициализирован')
         return
 
+    userbot.sent_code = await userbot.send_code(userbot.phone_number)
     await states.UserbotAuth.phone_code.set()
-
-    sent_code = await userbot.send_code(userbot.phone_number)
-    await state.update_data(phone_code_hash=sent_code.phone_code_hash)
     await msg.answer('Отправь код авторизации')
 
 

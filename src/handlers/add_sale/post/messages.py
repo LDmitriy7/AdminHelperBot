@@ -31,7 +31,7 @@ async def callback(msg: types.Message, state: FSMContext):
 
     for c_name in channels:
         for c in config.CHANNELS:
-            if c.name == c_name:
+            if c.title == c_name:
                 await userbot.forward_messages(
                     c.id,
                     msg.chat.id,

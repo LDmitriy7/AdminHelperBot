@@ -15,7 +15,7 @@ async def callback(query: types.CallbackQuery, state: FSMContext):
     if len(channels) == len(config.CHANNELS):
         channels = []
     else:
-        channels = [c.name for c in config.CHANNELS]
+        channels = [c.title for c in config.CHANNELS]
 
     await state.update_data(channels=channels)
     kb = kbs.Channels(config.CHANNELS, selected=channels).adapt()

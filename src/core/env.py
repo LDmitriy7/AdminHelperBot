@@ -1,32 +1,41 @@
+import os
+import typing
 import warnings
 from pathlib import Path
 
-from envparse import Env as RawEnv, NOTSET
+from envparse import env as _raw
+
+T = typing.TypeVar('T')
+
+
+def load(file_path: str):
+    path = Path(file_path)
+
+    if not path.exists():
+        warnings.warn(f'File "{path}" not found')
+
+    _raw.read_envfile(path)
+
+
+def parse(var_name: str, default=..., cast_func=lambda x: x):
+    if var_name in os.environ:
+        return cast_func(os.environ[var_name])
+    if default is ...:
+        raise ValueError(f'Environment variable "{var_name}" not set')
+    return default
 
 
 class Env:
+    def __init__(self, file_path: str):
+        load(file_path)
 
-    def __init__(self, path: str):
-        self._path = Path(path)
-        self._raw = RawEnv()
-        self._read_file()
+    @staticmethod
+    def get(var_name: str, default: T = ...) -> str | T:
+        return parse(var_name, default)
 
-    def _read_file(self):
-        path = self._path
-
-        if not path.exists():
-            warnings.warn(f'File {path} not found')
-
-        self._raw.read_envfile(path)
-
-    def get(self, var_name: str, default=...) -> str:
-        if default is ...:
-            default = NOTSET
-
-        return self._raw(var_name, default)
-
-    def get_int(self, var_name: str, default=...) -> int:
-        return int(self.get(var_name, default))
+    @staticmethod
+    def get_int(var_name: str, default: T = ...) -> int | T:
+        return parse(var_name, default, int)
 
 
 env = Env('.env')
