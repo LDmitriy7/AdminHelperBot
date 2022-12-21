@@ -2,7 +2,7 @@ from core import env
 from models import Channel
 
 ADMINS_IDS = [724477101, 936845322, 677293584, 5253920596, 2062674929, 1149906530]
-OWNER_ID = 724477101  # 1980530667
+OWNER_ID = 1980530667
 REPORT_GROUP_ID = env.get_int('REPORT_GROUP_ID')
 
 _channels_data = [
