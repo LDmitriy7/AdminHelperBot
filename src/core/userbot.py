@@ -11,7 +11,7 @@ class Userbot(pyrogram.Client):
     def __init__(self, api_id: int, api_hash: str, phone_number: str, password: str):
         self.sent_code: types.SentCode | None = None
         super().__init__(
-            '../userbot',
+            config.USERBOT_SESSION_PATH,
             api_id,
             api_hash,
             phone_number=phone_number,
